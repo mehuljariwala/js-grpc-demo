@@ -1,0 +1,27 @@
+// version of proto3 / 2 / 1 this are different version we have.
+syntax = "proto3";
+
+// name of the packages and which can contain the multiple services
+package todoPackage;
+
+
+// define the list of todo services [create, read, write]
+service Todo {
+  rpc createTodo (TodoItem) returns (TodoItem);
+  rpc readTodos (NoParams) returns (TodoList);
+  rpc readTodoStrem (NoParams) returns (stream TodoList);
+}
+
+// no param type
+message NoParams {}
+
+// todo item interface
+message TodoItem {
+  int32 id = 1;
+  string text = 2;
+}
+
+// use repeated here which similar to TodoItem[] in typescript
+message TodoList {
+  repeated TodoItem items = 1;
+}
